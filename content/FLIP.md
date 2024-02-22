@@ -11,7 +11,7 @@ Turns out particles are really bad at conserving volume because spheres have emp
 
 ## Skeleton of a FLIP setup (in DOPs)
 
-![[image7.png]]
+![[flip-dop-base.png]]
 
   
 

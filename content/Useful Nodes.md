@@ -16,13 +16,13 @@ Uses curveu attribute to trim the start and end of a spline, similar to trim pat
 
 ## Enumerate SOP
 
-![[Untitled.png]]
+![[extending-menu-example.png]]
 
 Enumerate SOP allows you to create point numbers relative to within a group, while normally @ptnum would refer to the point number relative to the whole geometry
 
 ## Invoke and Compile Block SOP
 
-![[Untitled 1.png]]
+![[compile-block.png]]
 
 The invoke SOP is used when you need to apply a set of operations to many different objects, and changing the operation changes the output for all of the affected objects.
 

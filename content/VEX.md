@@ -1,3 +1,11 @@
+---
+title: VEX 🖥️
+draft: false
+tags:
+ -code
+---
+
+
 ## [VEX Attribute Glossary by John Kunz](https://wiki.johnkunz.com/index.php?title=VEX_Attribute_Glossary#What_is_VEX.3F)
 
   
@@ -19,14 +27,11 @@ setprimintrinsic(0, "abcframe", @ptnum, @Frame+offset);
 
 ## Center UV islands
 
-![[/Untitled 3.png|Untitled 3.png]]
 
-Before
-
-![[/Untitled 1 2.png|Untitled 1 2.png]]
-
-After
-
+### Before
+![[uvs-uncentered.png]]
+### After
+![[uvs-centered.png]]
 ```C
 v@P = v@uv; //move point transforms to uv coords
 						//so that we can use built in pos functions
@@ -40,7 +45,7 @@ vector bboxcenter = getbbox_center(0);
 
 ## Generate Heading Vector from 2 Points / 1 Edge
 
-![[image5.png]]
+![[weird-quaternion.png]]
 
 Not sure how I would describe what I was trying to accomplish, but basically I was trying to generate a heading vector that pointed in the same direction as each of these lines, while keeping the orientation of each vector to correspond to the midpoint of this whole curve.
 

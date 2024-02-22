@@ -1,24 +1,5 @@
-Matrices and Transforms
 
-Transformation Matrix
-
-Creating a Transform Matrix given 3 vector axes
-
-Vectors & Orient
-
-Finding Angle between 2 Vectors
-
-Find Normal vector of plane given 3 points (A,B,C)
-
-Dot Product
-
-The Dreaded Quaternions
-
-Other Functions
-
-Choose Function
-
-# ==Matrices and Transforms==
+# Matrices and Transforms
 
 ## Transformation Matrix
 
@@ -86,7 +67,7 @@ f@theta = acos(
 
 ## Find Normal vector of plane given 3 points (A,B,C)
 
-![[vector.png]]
+![[face-vector.png]]
 
 Both N vectors are equal
 
@@ -94,7 +75,7 @@ $\vec{N} = normalize( (B-A) \times (C-A) )$
 
 ## Dot Product
 
-![[image2.png]]
+![[dot-product-illustration.png]]
 
 nice drawing
 
