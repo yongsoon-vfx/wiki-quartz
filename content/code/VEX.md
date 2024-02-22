@@ -18,7 +18,7 @@ The current frame of an alembic primitive is stored within a intrinsic primitive
 
 You can pack alembics and instance it to points and you can randomize the current frame of each alembic by controlling the abcframe primintrinsic using a vex function
 
-```C
+```c
 float seed = rand(@ptnum);
 int offset = fit01(seed,0,10); //Convert 0-1 float to a int for frame values
 setprimintrinsic(0, "abcframe", @ptnum, @Frame+offset);
@@ -32,7 +32,7 @@ setprimintrinsic(0, "abcframe", @ptnum, @Frame+offset);
 ![[uvs-uncentered.png]]
 ### After
 ![[uvs-centered.png]]
-```C
+```c
 v@P = v@uv; //move point transforms to uv coords
 						//so that we can use built in pos functions
 
@@ -49,7 +49,7 @@ vector bboxcenter = getbbox_center(0);
 
 Not sure how I would describe what I was trying to accomplish, but basically I was trying to generate a heading vector that pointed in the same direction as each of these lines, while keeping the orientation of each vector to correspond to the midpoint of this whole curve.
 
-```C
+```c
 //Get neighbouring point
 int nbpt = neighbour(0,@ptnum,2);
 vector nbpos = point(0,"P",nbpt);
@@ -90,7 +90,7 @@ Credits to Andy Nicholas
 
 Across Prims
 
-```C
+```c
 i@index = 0;
 int pPrim = 0;
 int initPrim = chi('First_Prim');
@@ -109,7 +109,7 @@ for(int i = 0;i< @numprim;i++){
 
 Across Points
 
-```C
+```c
 int pPoint = 0;
 int ttlPoints = npoints(0);
 int initPoint = chi('First_Prim');

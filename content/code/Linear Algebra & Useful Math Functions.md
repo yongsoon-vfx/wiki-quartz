@@ -1,3 +1,10 @@
+---
+title: Linear Algebra & Math
+draft: false
+tags:
+ - code
+ - math
+---
 
 # Matrices and Transforms
 
@@ -9,7 +16,7 @@ $identity =\begin{vmatrix}1 & 0 & 0 & 0\\0 & 1 & 0 & 0\\0 & 0 & 1 & 0\\0 & 0 & 0
 
 Then, you apply the matrix by multiplying it with the current position to perform the transformation
 
-```C
+```c
 matrix3 m = ident();
 
 vector axis = {0,1,0};  //vector to rotate around
@@ -30,7 +37,7 @@ translate(m,{1,2,0}); //translates the matrix 1 unit in x and 2 units in y
 > Listening to : The Decemberists (various) This is an oldie but a goodie, and I haven't posted it anywhere else, so here it is before I forge.  
 > [https://renderdan.blogspot.com/2006/05/rotation-matrix-from-axis-vectors.html](https://renderdan.blogspot.com/2006/05/rotation-matrix-from-axis-vectors.html)  
 
-```C
+```c
 vector x = {1,0,0};
 vector y = {0,1,0};
 vector z = {0,0,1};
@@ -46,7 +53,7 @@ vector z = {0,0,1};
 > [!important]  
 > The code above generates a identity matrix, which is a matrix with 1s along the diagonal. This matrix represents a lack of any transformation. You can use the built in ident() function to generate a identity matrix of any size.  
 
-# Vectors & Orient
+# Vectors & Quaternions
 
 ## Finding Angle between 2 Vectors
 
@@ -54,7 +61,7 @@ $\Theta = \arccos \frac{a\cdot b}{\left | a \right |\left | b \right |}$
 
 The angle between any two vectors is given by the formula above, where a is vector 1 and b is vector 2. The following is an implementation of the formula in Vex
 
-```C
+```c
 vector v1 = {0,1,0};
 vector v2 = {1,0,0};
 
@@ -93,7 +100,7 @@ If v1 is perpendicular to v2, the dot product is 0
 
 This is useful for masking faces that face a certain direction, eg: masking all faces that face up for a snow accumulation effect.
 
-```C
+```c
 vector v1 = {1,0,0};
 vector v2 = {0,1,0};
 //normalize the vectors or the float output will be out of range
@@ -112,7 +119,7 @@ Quaternion rotation is preferred over Euler rotations as it does not suffer from
 
 You can use quaternions to specify the rotation of points to be instanced onto, using the @orient attribute. The quaternion() function also readily converts a transformation matrix into a quaternion.
 
-```C
+```c
 //------------Creating a quaternion from a matrix3
 matrix3 m = ident();
 vector axis = {1,0,0};  //vector to rotate around

@@ -32,20 +32,20 @@ And you want to do the following:
 
 1. Now you have 3 work items with an array attribute with all the nested jpgs. The only good way to manipulate the attribute array is with Python.
 
-```Python
-\#The current work item is automatically assigned to the variable work_item
-\#Importing a attribute from work_items 
+```python
+#The current work item is automatically assigned to the variable work_item
+#Importing a attribute from work_items 
 images = work_item.fileAttribArray('images')
 for image in images:
-	\#do stuff
-\#Creating a new attribute and writing to it
+	#do stuff
+#Creating a new attribute and writing to it
 work_item.addAttrib("diffuse_texture",pdg.attribType.File)
 work_item.setFileAttrib("diffuse_texture", somefile)
-\#use .addMessage() method for stdout into the worker log
+#use .addMessage() method for stdout into the worker log
 work_item.addMessage("Created diffuse_texture attribute")
 
-\#Random Note
-\#To get a path of pdg.File class aka the elements in images
-\#You have to use pdg.File.path; in this case in the for loop
-\#it would be image.path which returns: /home/folder/files1/eg.jpg
+#Random Note
+#To get a path of pdg.File class aka the elements in images
+#You have to use pdg.File.path; in this case in the for loop
+#it would be image.path which returns: /home/folder/files1/eg.jpg
 ```

@@ -26,8 +26,9 @@ Currently still updating as and when I learn more new stuff!
 [[PDG and TOPs]]
 
 [[content/Color Management|Color Management 🎨]]
+##  [[why_should_i_learn_coding|Why should I learn how to Code?]]
 
-## Simulation Stuff
+## Simulations
 
 [[POP]]
 

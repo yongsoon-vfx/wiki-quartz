@@ -27,7 +27,7 @@ In order to access a a pdg.Node class you have to use a method on a hou.node cla
 >  
 > [https://www.sidefx.com/forum/topic/73862/?page=1#post-312290](https://www.sidefx.com/forum/topic/73862/?page=1#post-312290)  
 
-```Python
+```python
 top_node = hou.node('/obj/topnet1/genericgenerator1') \#uses hou.TopNode class
 pdg_node = top_node.getPDGNode()                      \#uses pdg.Node class
 for work_item in pdg_node.workItems:
@@ -50,7 +50,7 @@ for work_item in pdg_node.workItems:
 
 So Houdini has an incremental save feature but with the default customization you can only choose to either go with incremental saves or to overwrite your saves as the only behavior. If you want to have a selectable option for incremental and overwriting your saves, you have to create a script. Luckily its only two lines.
 
-```Python
+```python
 import hou
 hou.hipFile.saveAndIncrementFileName()
 ```
@@ -65,7 +65,7 @@ You can control any menu element in Houdini from the xml configuration files loc
 
 But the summary is, after you create your script add this to your MainMenuCommon.xml
 
-```XML
+```xml
 <mainMenu>
   <addScriptItem id="h.saveinc">
 	 <parent>file_menu</parent>
@@ -77,7 +77,7 @@ But the summary is, after you create your script add this to your MainMenuCommon
 </mainMenu>
 ```
 
-![[/Untitled 2.png|Untitled 2.png]]
+![[content/images/extending-menu-example.png]]
 
 `<parent>` tag indicates which menu the new item will live under
 
@@ -95,7 +95,7 @@ So, I was making my own script for packaging a project using Python as an excuse
 
 Regardless, here’s the code that I had typed that will serve as reference for me on how to find specific node types:
 
-```Python
+```python
 import hou
 \#returns all instances of nodes of type 'file'
 \#use hou.node('path-to-node').type() to return
