@@ -1,8 +1,8 @@
 ---
-title: Example Title
+title: Houdini Fountain of K
 draft: false
 tags:
-  - example-tag
+  - home-page
 ---
 
 This is where I put whatever random stuff I’ve learnt and I deem as important enough to note down
@@ -15,29 +15,29 @@ Currently still updating as and when I learn more new stuff!
 
 ## General Stuff
 
-[[Useful Nodes ⭐]]
+[[Useful Nodes]]
 
-[[Linear Algebra & Useful Math Functions 🤓]]
+[[Linear Algebra & Useful Math Functions]]
 
-[[Scripting Houdini 📃]]
+[[Scripting Houdini]]
 
-[[VEX ⌨️]]
+[[VEX]]
 
-[[PDG and TOPs 🛠️]]
+[[PDG and TOPs]]]
 
 [[Color Management]]
 
 ## Simulation Stuff
 
-[[POP 🎉]]
+[[POP]]
 
-[[FLIP 💦]]
+[[FLIP]]
 
-[[Pyro 🔥]]
+[[Pyro]]
 
-[[Vellum 👕]]
+[[Vellum]]
 
-[[RBD Bullet 🏛️]]
+[[RBD Bullet]]
 
   
 
