@@ -2,7 +2,7 @@
 title: VEX 🖥️
 draft: false
 tags:
- -code
+ - code
 ---
 
 
