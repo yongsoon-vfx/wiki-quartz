@@ -1,3 +1,10 @@
+---
+title: PDG & TOPs
+draft: false
+tags:
+ - code
+---
+
 # Creating Work Items from files in Subdirectories
 
 Let’s say you have a folder with the following struct:

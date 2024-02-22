@@ -17,15 +17,15 @@ Currently still updating as and when I learn more new stuff!
 
 [[Useful Nodes]]
 
-[[Linear Algebra & Useful Math Functions]]
+[[Linear Algebra & Useful Math Functions|Linear Algebra & Math 🤓]]
 
 [[Scripting Houdini]]
 
 [[VEX]]
 
-[[PDG and TOPs]]]
+[[PDG and TOPs]]
 
-[[Color Management]]
+[[content/Color Management|Color Management 🎨]]
 
 ## Simulation Stuff
 

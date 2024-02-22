@@ -1,3 +1,14 @@
+---
+title: Scripting Houdini
+draft: false
+tags:
+ - python
+ - xml
+ - json
+ - code
+---
+
+
 ## **Overview**
 
 Summary from Houdini [Documentation](https://www.sidefx.com/docs/houdini/hom/index.html)
