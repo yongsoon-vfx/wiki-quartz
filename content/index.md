@@ -10,6 +10,8 @@ This is where I put whatever random stuff I’ve learnt and I deem as important 
 Currently still updating as and when I learn more new stuff!
 
 ##  [[why_should_i_learn_coding|Why should I learn how to Code?]]
+[[Solaris]]
+
 
 [opencl masterclass](https://www.sidefx.com/tutorials/houdini-165-masterclass-opencl/)
 
