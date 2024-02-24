@@ -1,3 +1,8 @@
+---
+title: Color Management 🎨
+draft: false
+---
+
 Excellent Resource for understanding Color Management as well as using ACES in 3D rendering and compositing
 
 > [!info] Chapter 1: Color Management - Chris Brejon  
