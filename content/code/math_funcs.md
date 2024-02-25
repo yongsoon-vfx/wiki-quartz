@@ -2,10 +2,11 @@
 title: Linear Algebra & Math
 draft: false
 tags:
- - code
- - math
+  - code
+  - math
+created: 2024-02-24T22:50
+updated: 2024-02-25T01:20
 ---
-
 # Matrices and Transforms
 
 ## Transformation Matrix

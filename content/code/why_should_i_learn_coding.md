@@ -2,10 +2,12 @@
 title: Why Should I learn Coding as a CG Artist
 draft: false
 tags:
- - code
- - python
- - vex
- - 
+  - code
+  - python
+  - vex
+  - 
+created: 2024-02-24T22:50
+updated: 2024-02-25T22:30
 ---
 ## Why should I learn coding as a CG Artist?
 
@@ -18,11 +20,11 @@ By coding in either VEX or Python for Houdini, you can work directly with geomet
 All popular CG programs use Python modules to interface with the user, and also expose the underlying framework in Python. So if you want to extend the functionality of your favorite CG program, chances are, you have to use Python one way or another.
 
 ## Foundation
-### [[Linear Algebra & Useful Math Functions]]
+### [[math_funcs]]
 
 
 ---
 ## Implementation
-### [[VEX]]
-### [[PDG and TOPs]]
-### [[Scripting Houdini]]
+### [[vex]]
+### [[pdg]]
+### [[python]]

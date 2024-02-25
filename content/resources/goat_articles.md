@@ -1,3 +1,11 @@
+---
+title: GOAT Articles
+tags:
+  - resources
+created: 2024-02-24T22:50
+updated: 2024-02-26T00:08
+---
+
 > [!info] An Even Longer-Winded Guide to Instancing in Houdini  
 > This article is way too long, so here’s the Table of Contents:  
 > [https://www.toadstorm.com/blog/?p=942](https://www.toadstorm.com/blog/?p=942)  

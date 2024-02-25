@@ -1,6 +1,10 @@
 ---
 title: Color Management 🎨
 draft: false
+tags:
+  - resources
+created: 2024-02-24T22:50
+updated: 2024-02-26T00:07
 ---
 
 Excellent Resource for understanding Color Management as well as using ACES in 3D rendering and compositing

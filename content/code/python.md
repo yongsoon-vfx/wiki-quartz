@@ -1,35 +1,38 @@
 ---
-title: Scripting Houdini
+title: Python 🐍
 draft: false
 tags:
- - python
- - xml
- - json
- - code
+  - python
+  - xml
+  - json
+  - code
+created: 2024-02-24T22:50
+updated: 2024-02-26T00:06
 ---
 
 
-## **Overview**
+# Extending Houdini
 
-Summary from Houdini [Documentation](https://www.sidefx.com/docs/houdini/hom/index.html)
+Houdini's Python API is implemented with the `hou` module. Each node is implemented as a class that inherits from a hierarchy of classes. ^3c762b
 
-> The Houdini Object Model (HOM) is an application programming interface (API) that lets you get information from and control Houdini using the [Python scripting language](http://www.python.org/). In Python, the [hou package](https://www.sidefx.com/docs/houdini/hom/hou/index.html) is the top of a hierarchy of modules, functions, and classes that define the HOM. The `hou` module is automatically imported when you are writing expressions in the [parameter editor](https://www.sidefx.com/docs/houdini/ref/panes/parms.html) and in the `hython` command-line shell.
+For example, a `null SOP` is a `hou.SopNode` inheriting from multiple other classes
+```mermaid
+flowchart TD
+   A[hou.NetworkItem]-->B(hou.NetworkMovableItem)-->C(hou.Node)-->D(hou.OpNode)-->E(hou.SopNode)
+```
+This means that you can access any methods from the superclasses from the current subclass. However, there are some exceptions to this with regards to PDG and USD contexts.
 
-TL;DR: Use Python when you want to make scripts that interact with the interface
+## Accessing a PDG class with Python
 
----
+In order to access a `pdg.Node` object, you have to use the `getPDGNode()` method on a `hou.TopNode`
 
-## Accessing PDG through Python Shelf Scripts
-
-In order to access a a pdg.Node class you have to use a method on a hou.node class. The documentation is really bad and I couldn’t find reference to this until I found a random forum post talking about it.
-
+Credits to the following forum post that helped me discover this:
 > [!info] pythonscript to press button on node per work item | Forums | SideFX  
->  
 > [https://www.sidefx.com/forum/topic/73862/?page=1#post-312290](https://www.sidefx.com/forum/topic/73862/?page=1#post-312290)  
 
 ```python
-top_node = hou.node('/obj/topnet1/genericgenerator1') \#uses hou.TopNode class
-pdg_node = top_node.getPDGNode()                      \#uses pdg.Node class
+top_node = hou.node('/obj/topnet1/genericgenerator1') #inherits hou.TopNode class
+pdg_node = top_node.getPDGNode()                      #inherits pdg.Node class
 for work_item in pdg_node.workItems:
     print(work_item)
 
@@ -40,26 +43,41 @@ for work_item in pdg_node.workItems:
 #  WHICH YOU CAN COOK USING top_node.cookWorkitems() method
 ```
 
-  
+## Accessing a USD class with Python
 
-> [!info] Setting Up A Default Scene In Houdini  
-> Support us on Patreon: http://www.  
-> [https://www.youtube.com/watch?v=ejZtvwztceU](https://www.youtube.com/watch?v=ejZtvwztceU)  
+To access a `pxr.Usd.Stage` object and use the USD functions in Houdini, you have to call the `stage()` method on a `hou.LopNode`. 
 
+>[!info] Nvidia Python USD API Documentation
+>[https://docs.omniverse.nvidia.com/kit/docs/pxr-usd-api/latest/pxr/Usd.html#pxr.Usd.Stage](https://docs.omniverse.nvidia.com/kit/docs/pxr-usd-api/latest/pxr/Usd.html#pxr.Usd.Stage)
+
+>[!attention] Important
+>Take note, not all nodes that you create within Solaris is `hou.LopNode`, for example, the USD Render ROP which is unique to Solaris, does not inherit from `hou.LopNode`.
+
+### Example Code to get a Usd.Prim and attribute
+
+```python
+node = hou.pwd()
+stage = node.stage()
+#Now that we have a pxr.Usd.Stage object
+#We can start calling methods from the Usd-API
+
+usdPrim = stage.getPrimAtPath("/geo")
+usdAttribute = usdPrim.GetAttribute("example")
+value= usdAttribute.Get()
+
+```
+---
 ## Incremental Save
 
 So Houdini has an incremental save feature but with the default customization you can only choose to either go with incremental saves or to overwrite your saves as the only behavior. If you want to have a selectable option for incremental and overwriting your saves, you have to create a script. Luckily its only two lines.
 
 ```python
-import hou
+import hou #not needed but I like to include it
 hou.hipFile.saveAndIncrementFileName()
 ```
 
 Save this script and add it to your File menu using the following method and you are set.
-
-  
-
-## Adding a Script to Houdini’s built-in main menus
+### Adding a Script to Houdini’s built-in main menus
 
 You can control any menu element in Houdini from the xml configuration files located in your Houdini installation’s folder, official documentation [here](https://www.sidefx.com/docs/houdini/basics/config_menus.html).
 
@@ -77,17 +95,13 @@ But the summary is, after you create your script add this to your MainMenuCommon
 </mainMenu>
 ```
 
-![[content/images/extending-menu-example.png]]
+![[images/extending-menu-example.png]]
 
 `<parent>` tag indicates which menu the new item will live under
 
 `<insertAfter>` indicates the placement of of the additional item using the id of the element to insert after
 
 The ids and parent menu names can be found under _$HH/MainMenuCommon.xml or $HFS/houdini/MainMenuCommon.xml_
-
-  
-
-  
 
 ## Collect Files (How to package a project)
 
@@ -97,14 +111,14 @@ Regardless, here’s the code that I had typed that will serve as reference for 
 
 ```python
 import hou
-\#returns all instances of nodes of type 'file'
-\#use hou.node('path-to-node').type() to return
-\#the type of a specific node you need
+#returns all instances of nodes of type 'file'
+#use hou.node('path-to-node').type() to return
+#the type of a specific node you need
 fileN = hou.sopNodeTypeCategory().nodeType('file').instances()
 for node in fileN:
-		\#evalParm evaluates the current value of the selected parm
-		\#this means that $F or any expressions will return as the
-		\#current value, eg. on frame 86 $F will return 86
+		#evalParm evaluates the current value of the selected parm
+		#this means that $F or any expressions will return as the
+		#current value, eg. on frame 86 $F will return 86
     path = node.evalParm('file')
     print(path.replace('$HIP',''))
 ```

@@ -1,8 +1,10 @@
 ---
-title: PDG & TOPs
+title: PDG
 draft: false
 tags:
- - code
+  - code
+created: 2024-02-24T22:50
+updated: 2024-02-26T00:00
 ---
 
 # Creating Work Items from files in Subdirectories
@@ -25,7 +27,7 @@ And you want to do the following:
 > This creates 3 work items for each of the folders under /home/folder with two attributes, filename and subdir. filename will be the base name of the folder; eg. files1 while subdirs will be the full path to the folder  
 
 1. Create a second filepattern node and set **File Types : Files Only** , and disable **Split Files into Separate Items.** This will disable the creation of additional work items and instead append all files returned by the node into an array attribute.
-2. Set the pattern to `` `@subdirs`\*.jpg `` This will look for all files with a jpg extension under each subdir work item. Enable Output Attribute and set it to images.
+2. Set the pattern to ` `@subdirs`\*.jpg ` This will look for all files with a jpg extension under each subdir work item. Enable Output Attribute and set it to images.
 
 > [!important]  
 > @subdir has to be enclosed in back-ticks as pattern is a string parameter.  
