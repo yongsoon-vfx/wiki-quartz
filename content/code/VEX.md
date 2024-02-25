@@ -2,7 +2,10 @@
 title: VEX 🖥️
 draft: false
 tags:
- - code
+  - code
+  - vex
+created: 2024-02-26T00:11
+updated: 2024-02-26T00:14
 ---
 
 
