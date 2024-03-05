@@ -6,6 +6,10 @@ tags:
 created: 2024-02-24T22:50
 updated: 2024-02-25T23:54
 ---
+## Pattern Matching Prims in Solaris
+[Houdini Documentation](https://www.sidefx.com/docs/houdini/solaris/pattern.html)
+
+
 ## Restructure Scene Graph LOP
 >Reparent Primitives  
 >Rename Primitives  
