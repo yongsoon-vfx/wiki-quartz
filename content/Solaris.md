@@ -13,26 +13,26 @@ updated: 2024-02-25T23:54
 Reference LOP is used for combining a main stage with a specific prim from another stage. Think of it as copy and pasting a folder in a specific directory into another folder.
 
 usda.usd
->/
->>Chair
->>>chair_geo
->>>chair_mtl
->>>>material1
+>/ 
+>>Chair 
+>>>chair_geo 
+>>>chair_mtl 
+>>>>material1 
 
 usdb.usd
 >/
->>mtl
->>>blue
->>>pink
+>>mtl 
+>>>blue 
+>>>pink 
 
 Using a Reference LOP and setting the `Primitive Path` to `/Chair/chair_mtl` and the `Reference Primitive Path` to `/mtl/` will merge all of `mtl`'s children primitives onto `chair_mtl` creating the following:
 >/
 >>Chair
 >>>chair_geo
 >>>chair_mtl
->>>>material1
->>>>blue
->>>>pink
+>>>>material1 
+>>>>blue 
+>>>>pink 
 
 ## Restructure Scene Graph LOP
 >Reparent Primitives  
