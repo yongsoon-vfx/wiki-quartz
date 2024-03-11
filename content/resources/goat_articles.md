@@ -13,3 +13,7 @@ updated: 2024-02-26T00:08
 > [!info] VEX Wrangle Snippets - kunz  
 > Offset the position of geometry  
 > [https://wiki.johnkunz.com/index.php?title=VEX_Wrangle_Snippets](https://wiki.johnkunz.com/index.php?title=VEX_Wrangle_Snippets)
+
+http://vochsel.com/wiki/
+
+https://www.tokeru.com/cgwiki/
