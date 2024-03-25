@@ -20,11 +20,10 @@ Currently still updating as and when I learn more new stuff!
 
 ---
 ## General Stuff
-
+### [[Houdini SOP Tricks]]
 ### [[Useful Nodes|Useful Nodes⭐]]
 ### [[code/math_funcs|Linear Algebra & Math 🤓]]
 ### [[Color Management|Color Management ]]
-
 ### [[Dump]]
 
 ---
