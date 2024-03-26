@@ -12,6 +12,9 @@ updated: 2024-02-25T23:54
 ## Reference LOP
 Reference LOP is used for combining a main stage with a specific prim from another stage. Think of it as copy and pasting a folder in a specific directory into another folder.
 
+## Additional Render Vars LOP
+Used for creating custom AOVs based on primvars and other attributes. The same functionality is contained within the Karma Render Properties LOP but does not exist in the universal Render Properties LOP, which necessitates the use of this node.
+
 usda.usd
 >/ 
 >>Chair 
