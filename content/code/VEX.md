@@ -12,7 +12,7 @@ updated: 2024-02-26T00:14
 ## [VEX Attribute Glossary by John Kunz](https://wiki.johnkunz.com/index.php?title=VEX_Attribute_Glossary#What_is_VEX.3F)
 
   
-### String Manipulation
+## String Manipulation
 String formatting In VEX is derived from C. Where each variable to be passed into the string is formatted based on a specific format in the string.
 #### Example in Python
 ```python
@@ -33,14 +33,15 @@ Number specifying number of spaces of the value including the decimal point. I'm
 ##### Precision:
 Number specifying number of decimal points, meaning `412.1492` has a precision of 4. If set to `*`it will take the either the first argument or the second argument if width is also set to `*`.
 ##### Formats:
-`%g, %p, %c` Integer, float, vector, vector4, matrix3, matrix, string (General)
-`%f, %e, %E` Float, vector, vector4, matrix3, matrix (Floating Point)
-`%s` String
-`%d, %i` Integer in decimal format
-`%x, %X` Integer in hexadecimal
-`%o` Integer in octal
-`%%` Literal percent
-##### Example
+`%g, %p, %c` Integer, float, vector, vector4, matrix3, matrix, string (General) 
+`%f, %e, %E` Float, vector, vector4, matrix3, matrix (Floating Point) 
+`%s` String 
+`%d, %i` Integer in decimal format 
+`%x, %X` Integer in hexadecimal 
+`%o` Integer in octal 
+`%%` Literal percent 
+##### Example 
+
 ```c
 int i = 100;
 printf("frame%04d.jpg",i);
@@ -56,6 +57,16 @@ printf("%.2g%%",f)
 //Output: 24.10%
 ```
 
+## Getting OBJ level transforms to VEX
+The following sample code is getting a position of a camera into the wrangle.
+
+```c
+matrix xform = optransform(ch('cam_node'));
+//where cam_node can be a string or operator path parameter
+vector camera_pos = xform * {0,0,0};
+//in the case of a camera, the position of the point is
+//exactly at 0,0,0.
+```
 
 ## Instancing Alembics and modifying it’s frame offset
 
