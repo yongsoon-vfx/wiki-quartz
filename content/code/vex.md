@@ -25,23 +25,26 @@ string this_str = sprintf("My position: %g, and this is my age: %f",v@P,f@age)
 The attributes `v@P` and `f@age` as passed in as arguments and replace `%g` and `%f` respectively.
 The general form of the argument is given as `[flags][width][.precision][format]`
 ##### Possible Flags:
--: Left justify the result
-+: Prefix numbers with + if positive, also strings will be surrounded with quotes
-0: Pad zeros for numeric values
+-: Left justify the result  
++: Prefix numbers with + if positive, also strings will be surrounded with quotes  
+0: Pad zeros for numeric values  
 ##### Width: 
-Number specifying number of spaces of the value including the decimal point. I'm not fully clear how it works with floats but `int i = 100` has a width of 3, and setting it any higher will add spaces to pad the front, unless `0` flag is active, then it will pad with 0s or if `-` flag is active, it will pad from the end. If set to `*` it will take the first argument as the width.
+Number specifying number of spaces of the value including the decimal point.  
+I'm not fully clear how it works with floats but `int i = 100` has a width of 3, and setting it any higher will add spaces to pad the front, unless `0` flag is active, then it will pad with 0s or if `-` flag is active, it will pad from the end.  
+If set to `*` it will take the first argument as the width.
 ##### Precision:
-Number specifying number of decimal points, meaning `412.1492` has a precision of 4. If set to `*`it will take the either the first argument or the second argument if width is also set to `*`.
+Number specifying number of decimal points, meaning `412.1492` has a precision of 4.  
+If set to `*`it will take the either the first argument or the second argument if width is also set to `*`.
 ##### Formats:
-`%g, %p, %c` Integer, float, vector, vector4, matrix3, matrix, string (General) 
-`%f, %e, %E` Float, vector, vector4, matrix3, matrix (Floating Point) 
-`%s` String 
-`%d, %i` Integer in decimal format 
-`%x, %X` Integer in hexadecimal 
-`%o` Integer in octal 
-`%%` Literal percent 
-##### Example 
+`%g, %p, %c` Integer, float, vector, vector4, matrix3, matrix, string (General)  
+`%f, %e, %E` Float, vector, vector4, matrix3, matrix (Floating Point)  
+`%s` String  
+`%d, %i` Integer in decimal format  
+`%x, %X` Integer in hexadecimal  
+`%o` Integer in octal   
+Use double `%` for the literal symbol
 
+##### Example:
 ```c
 int i = 100;
 printf("frame%04d.jpg",i);
@@ -59,7 +62,6 @@ printf("%.2g%%",f)
 
 ## Getting OBJ level transforms to VEX
 The following sample code is getting a position of a camera into the wrangle.
-
 ```c
 matrix xform = optransform(ch('cam_node'));
 //where cam_node can be a string or operator path parameter
