@@ -61,7 +61,7 @@ stage = node.stage()
 #Now that we have a pxr.Usd.Stage object
 #We can start calling methods from the Usd-API
 
-usdPrim = stage.getPrimAtPath("/geo")
+usdPrim = stage.GetPrimAtPath("/geo")
 usdAttribute = usdPrim.GetAttribute("example")
 value= usdAttribute.Get()
 

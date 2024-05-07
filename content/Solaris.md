@@ -4,7 +4,7 @@ draft: false
 tags:
   - solaris
 created: 2024-02-24T22:50
-updated: 2024-03-17T12:58
+updated: 2024-02-25T23:54
 ---
 ## Restructure Scene Graph LOP
 >Reparent Primitives  
@@ -35,14 +35,6 @@ updated: 2024-03-17T12:58
 >return str(val)
  >```
 
-
-
-# Volume Shaders in Karma
-## Mtlx Volume Node 
-To search for appropriate inputs you can search for the value label of the input: eg;
-Searching for edf gives you Mtlx Uniform edf for the emission field
-## Accessing specific fields like Density
-Use a Mtlx Geom Property Value node
 
 
 ## [[python#Accessing a USD class with Python|Accessing Usd Prims with Python]]

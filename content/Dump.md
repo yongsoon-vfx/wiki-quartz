@@ -9,5 +9,9 @@ updated: 2024-02-26T00:03
 
 [https://jtomori.github.io/2022/2022-12-30.html](https://jtomori.github.io/2022/2022-12-30.html)
 
+[custom edge damage tool](https://www.quentinking.com/posts/paintable-stylized-edge-damage-custom-python-stroke-states-in-houdini)
+
+extrat skeleton from tube
+https://www.youtube.com/watch?v=F86-TDRzjnc
 ### Testing
 
