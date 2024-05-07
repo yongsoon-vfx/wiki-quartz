@@ -1,0 +1,78 @@
+$font-family_1: inherit;
+
+/* Updated 2023-11-02 */
+/* Title at top of the document */
+/* Get rid of the parent bullet */
+/* Remove the indentation guide lines */
+/* Dataview support */
+.dashboard {
+  font-family: $font-family_1;
+  padding-left: 25px !important;
+  padding-right: 25px !important;
+  padding-top: 20px !important;
+  .markdown-preview-section {
+    max-width: 100%;
+    .title {
+      top: 60px;
+      position: absolute;
+      font-size: 26pt !important;
+      font-weight: bolder;
+      letter-spacing: 8px;
+    }
+  }
+  h1 {
+    border-bottom-style: dotted !important;
+    border-width: 1px !important;
+    padding-bottom: 3px !important;
+  }
+  div.markdown-preview-section {
+    > div {
+      > ul {
+        > li {
+          > div.list-bullet {
+            display: none !important;
+          }
+        }
+      }
+    }
+  }
+  div {
+    > ul {
+      list-style: none;
+      display: flex;
+      column-gap: 50px;
+      flex-flow: row wrap;
+      > li {
+        min-width: 250px;
+        width: 15%;
+      }
+    }
+  }
+  ul.dataview {
+    row-gap: 0px !important;
+    list-style-type: disc !important;
+  }
+}
+.dashboard.markdown-rendered.show-indentation-guide {
+  li {
+    > ul {
+      &::before {
+        display: none;
+      }
+    }
+    > ol {
+      &::before {
+        display: none;
+      }
+    }
+  }
+}
+div.markdown-preview-section {
+  > div {
+    > ul.has-list-bullet {
+      > li {
+        padding-left: 0p !important;
+      }
+    }
+  }
+}
