@@ -79,7 +79,6 @@ If you are trying to get random vectors in VEX, your first thought might be to u
 ## Getting OBJ level transforms to VEX
 
 The following sample code is getting a position of a camera into the wrangle.
-
 ```c
 matrix xform = optransform(ch('cam_node'));
 //where cam_node can be a string or operator path parameter
