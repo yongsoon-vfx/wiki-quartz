@@ -6,6 +6,37 @@ tags:
 created: 2024-02-24T22:50
 updated: 2024-02-25T23:54
 ---
+## Pattern Matching Prims in Solaris
+[Houdini Documentation](https://www.sidefx.com/docs/houdini/solaris/pattern.html)
+
+## Reference LOP
+Reference LOP is used for combining a main stage with a specific prim from another stage. Think of it as copy and pasting a folder in a specific directory into another folder.
+
+## Additional Render Vars LOP
+Used for creating custom AOVs based on primvars and other attributes. The same functionality is contained within the Karma Render Properties LOP but does not exist in the universal Render Properties LOP, which necessitates the use of this node.
+
+usda.usd
+>/ 
+>>Chair 
+>>>chair_geo 
+>>>chair_mtl 
+>>>>material1 
+
+usdb.usd
+>/
+>>mtl 
+>>>blue 
+>>>pink 
+
+Using a Reference LOP and setting the `Primitive Path` to `/Chair/chair_mtl` and the `Reference Primitive Path` to `/mtl/` will merge all of `mtl`'s children primitives onto `chair_mtl` creating the following:
+>/
+>>Chair
+>>>chair_geo
+>>>chair_mtl
+>>>>material1 
+>>>>blue 
+>>>>pink 
+
 ## Restructure Scene Graph LOP
 >Reparent Primitives  
 >Rename Primitives  

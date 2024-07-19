@@ -5,7 +5,7 @@ tags:
   - code
   - math
 created: 2024-02-24T22:50
-updated: 2024-04-22T15:25
+updated: 2024-02-25T01:20
 ---
 # Matrices and Transforms
 
@@ -115,8 +115,6 @@ f@dp = dot(v1,v2);
 ## The Dreaded Quaternions
 
 Quaternions are 4-dimensional vectors that define a rotation ( orientation ) in space. In Houdini you can easily manipulate quaternions using the built-in vex functions. (And you don’t have to do the math)
-
-The same rules that work with normal Euler vectors also apply to Quaternions eg: Multiplying two quaternions gives you the quaternion that is the result of Q1 rotated by Q2.
 
 Quaternion rotation is preferred over Euler rotations as it does not suffer from gimbal lock, which is the loss of freedom in one axis after performing Euler rotations.
 
