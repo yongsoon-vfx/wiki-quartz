@@ -11,7 +11,6 @@ This is where I put whatever random stuff I’ve learnt and I deem as important 
 
 Currently still updating as and when I learn more new stuff!
 
----
 <div class="container"> 
 <div class="column"> 
 <div class="column-header">General</div> 
@@ -24,33 +23,30 @@ Currently still updating as and when I learn more new stuff!
 <div class="column"> 
 <div class="column-header">Languages</div> 
 <ul> 
-<li><a href="./code/vex">VEX 🖥️</a></li> 
+<li><a href="./code/VEX">VEX 🖥️</a></li> 
 <li><a href="./code/python">Python 🐍</a></li> 
-<li><a href="./code/pdg">PDG (actually Python)</a></li> 
+<li>List Item 3</li> 
 </ul>
 </div>
 <div class="column">
 <div class="column-header">Simulations</div> 
-<ul> 
-<li><a href="./simulation/POP">POP 🎈</a></li> 
-<li><a href="./simulation/FLIP">FLIP 🌊</a></li> 
-<li><a href="./simulation/Vellum">Vellum 👗</a></li> 
-<li><a href="./simulation/Pyro">Pyro 🔥</a></li> 
-<li><a href="./simulation/RBD Bullet">RBD Bullet 🧱</a></li> 
+<ul> <li>List Item 1</li> <li>List Item 2</li> 
+<li>List Item 3</li> 
 </ul>
 </div>
 <div class="column">
 <div class="column-header">Resources</div>
 <ul> 
-<li><a href="./resources/goat_articles.md">Goated Articles 📰</a></li> 
-<li><a href="./resources/free_hq_assets.md">Free HQ Assets 💸</a></li> 
+<li>List Item 1</li> 
+<li>List Item 2</li> 
+<li>List Item 3</li> 
 </ul> 
 </div> 
 </div>
 
-### [[code/why_should_i_learn_coding|Why should I learn how to Code?]]
+- [[code/why_should_i_learn_coding|Why should I learn how to Code?]]
 
-### [[Solaris|Solaris]]
+- [[Solaris|Solaris]]
 
 ---
 
@@ -68,7 +64,7 @@ Currently still updating as and when I learn more new stuff!
 
 ## Languages
 
-### [[code/vex|VEX 🖥️]]
+### [[code/VEX|VEX 🖥️]]
 
 ### [[code/python|Python 🐍]]
 
