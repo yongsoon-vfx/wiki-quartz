@@ -23,7 +23,7 @@ Currently still updating as and when I learn more new stuff!
 <div class="column"> 
 <div class="column-header">Languages</div> 
 <ul> 
-<li><a href="./code/VEX">VEX 🖥️</a></li> 
+<li><a href="./code/vex">VEX 🖥️</a></li> 
 <li><a href="./code/python">Python 🐍</a></li> 
 <li>List Item 3</li> 
 </ul>
