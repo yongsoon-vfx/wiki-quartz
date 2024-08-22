@@ -11,6 +11,8 @@ This is where I put whatever random stuff I’ve learnt and I deem as important 
 
 Currently still updating as and when I learn more new stuff!
 
+---
+
 <div class="container"> 
 <div class="column"> 
 <div class="column-header">General</div> 
@@ -18,6 +20,7 @@ Currently still updating as and when I learn more new stuff!
 <li><a href="./Useful-Nodes">Useful Nodes</a></li> 
 <li><a href="./code/math_funcs">Math Functions</a> </li> 
 <li><a href="./Color-Management">Color Management</a> </li> 
+<li><a href="./Solaris">Solaris</a> </li> 
 </ul>
 </div> 
 <div class="column"> 
@@ -25,13 +28,17 @@ Currently still updating as and when I learn more new stuff!
 <ul> 
 <li><a href="./code/vex">VEX 🖥️</a></li> 
 <li><a href="./code/python">Python 🐍</a></li> 
-<li>List Item 3</li> 
+<li><a href="./code/opencl">OpenCL</a></li> 
 </ul>
 </div>
 <div class="column">
 <div class="column-header">Simulations</div> 
-<ul> <li>List Item 1</li> <li>List Item 2</li> 
-<li>List Item 3</li> 
+<ul>
+<li><a href="./simulation/POP">POP</a></li> 
+<li><a href="./simulation/FLIP">FLIP</a></li> 
+<li><a href="./simulation/Pyro">Pyro</a></li>
+<li><a href="./simulation/Vellum">Vellum</a></li>
+<li><a href="./simulation/RBD-Bullet">RBD</a></li>
 </ul>
 </div>
 <div class="column">
