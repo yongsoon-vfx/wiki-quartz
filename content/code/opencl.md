@@ -75,34 +75,50 @@ float3 x = (float3)(y,y,y);
 Algorithm converted from OpenGL from [The Book of Shaders: More Noise](https://thebookofshaders.com/12/)
 ```c
 #bind layer !&dst
-#bind parm scale float val=1
-#bind parm offset float2
-#import "random.h"
-#import "xnoise.h"
+#bind parm scale float val=10
+#bind parm octaves int val=8
+#bind parm lacunarity float val=0.5
+#bind parm diminish float val=0.5
+#bind parm offset float2 val=(0.5,0.5)
+#import "mtlx_noise_internal.h"
+
 @KERNEL
 {
     global const void *theXNoise;
     float2 uv = @P.texture;
     uv *= @scale;
+    
     float2 tile_coord , tile_id;
     tile_coord = fract(uv, &tile_id);
     tile_id += @offset;
+    
     float m_dist = 1.0f;
-    for (int y = -1; y<=1; y++){
-        for (int x = -1; x <= 1; x++){
+    
+    for (int y = -3; y<=3; y++){
+        for (int x = -2; x <= 2; x++){
             float2 query_offset = (float2)(x,y);
             float2 query_tile = tile_id + query_offset;
-            float3 point3 = xnoisev2(theXNoise,query_tile);
-            float2 point = point3.xy;
+            
+            int3 period = (1000,1000,1000);
+            float3 p = (float3)(query_tile,0.0f);
+            int octaves = @octaves;
+            float lacunarity = @lacunarity;
+            float diminish = @diminish;
+            
+	        float2 point = mx_fractal_noise_float2(p,octaves,lacunarity,diminish,period);
             point += query_offset;
             float dist = distance(point,tile_coord);
+            
             m_dist = min(m_dist,dist);
+            
         }
     }
+    
     float dist = m_dist;
     float4 clr = (float4)(dist,dist,dist,1.0f);
     @dst.set(clr);
 }
+
 ```
 
 
