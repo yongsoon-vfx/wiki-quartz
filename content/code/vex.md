@@ -70,7 +70,7 @@ printf("%.2g%%",f)
 //Output: 24.10%
 ```
 
-### VEX also contains built-in functions for regex string searching and matching
+##### VEX also contains built-in functions for regex string searching and matching!
 
 ## Geting random Vectors
 
