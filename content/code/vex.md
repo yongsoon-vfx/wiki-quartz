@@ -45,13 +45,13 @@ Number specifying number of decimal points, meaning `412.1492` has a precision o
 
 ##### Formats:
 
-`%g, %p, %c` Integer, float, vector, vector4, matrix3, matrix, string (General)
-`%f, %e, %E` Float, vector, vector4, matrix3, matrix (Floating Point)
-`%s` String
-`%d, %i` Integer in decimal format
-`%x, %X` Integer in hexadecimal
-`%o` Integer in octal
-`%%` Literal percent
+`%g, %p, %c` Integer, float, vector, vector4, matrix3, matrix, string (General) 
+`%f, %e, %E` Float, vector, vector4, matrix3, matrix (Floating Point) 
+`%s` String 
+`%d, %i` Integer in decimal format 
+`%x, %X` Integer in hexadecimal 
+`%o` Integer in octal 
+`%%` Literal percent 
 
 ##### Example
 

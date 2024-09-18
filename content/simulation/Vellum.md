@@ -4,9 +4,6 @@ draft: false
 tags:
  - simulation
 ---
-
-### Bro wtf is vellum
-
 ## Overview
 
 [https://www.youtube.com/watch?v=NwabG-znu9Y&ab_channel=Houdini](https://www.youtube.com/watch?v=NwabG-znu9Y&ab_channel=Houdini)
