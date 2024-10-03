@@ -146,7 +146,7 @@ quaterniontoeuler(q1); //converts a quaternion to an euler vector
 
 There are a few other functions in vex related to manipulating quaternions that you can refer to [here](https://www.sidefx.com/docs/houdini/vex/functions/quaternion.html). The ones that I’ve listed above are just the most commonly used operations.
 
-# Other Functions
+# Others
 
 ## Choose Function
 
@@ -155,3 +155,8 @@ ${n \choose k} = \frac{n!}{k!(n-k)!}$
 The choose function represents how many permutations there are in choosing _k_ items from a set with a total number of _n_ items.
 
 For example, 9 choose 2 would result in 36, meaning there are 36 unique pairs of items within the set.
+
+## Principal Component Analysis
+Principal component analysis (PCA) is a technique to reduce the dimensionality of data.
+[PCA Shenanigans and How to ML | Jakob Ringler](https://www.youtube.com/watch?v=oDTResIxPeQ)
+
