@@ -45,13 +45,13 @@ Number specifying number of decimal points, meaning `412.1492` has a precision o
 
 ##### Formats:
 
-`%g, %p, %c` Integer, float, vector, vector4, matrix3, matrix, string (General) 
-`%f, %e, %E` Float, vector, vector4, matrix3, matrix (Floating Point) 
-`%s` String 
-`%d, %i` Integer in decimal format 
-`%x, %X` Integer in hexadecimal 
-`%o` Integer in octal 
-`%%` Literal percent 
+`%g, %p, %c` Integer, float, vector, vector4, matrix3, matrix, string (General)
+`%f, %e, %E` Float, vector, vector4, matrix3, matrix (Floating Point)
+`%s` String
+`%d, %i` Integer in decimal format
+`%x, %X` Integer in hexadecimal
+`%o` Integer in octal
+`%%` Literal percent
 
 ##### Example
 
@@ -72,7 +72,31 @@ printf("%.2g%%",f)
 
 ##### VEX also contains built-in functions for regex string searching and matching!
 
-## Geting random Vectors
+## Rotating Quaternions
+
+A common mistake I used to make when trying to rotate quaternions is constructing a matrix and turning the matrix into a quaternion.
+
+```c
+//Incorrect
+matrix m = ident();
+m = rotate(m,chf('angle'),{0,1,0})
+vector4 rot = quaternion(m);
+
+p@orient = qmultiply(p@orient,rot);
+```
+
+This appears to work but you will realise that at some points, the orientation will appear to flip. This is because you are still performing the rotation step using the classic Euler rotation.
+The solution is to construct the `rot` quaternion directly as a `vector4`.
+
+```c
+//Correct Solution
+vector4 rot = quaternion(chf('angle'),{0,1,0})
+p@orient = qmultiply(p@orient,rot);
+```
+
+Now if you scrub through all values of `angle`, the orientation will rotate smoothly.
+
+## Getting random Vectors
 
 If you are trying to get random vectors in VEX, your first thought might be to use `vector v = rand(@ptnum)` however, this has a tendency towards positive vectors and generally does not give a good result. The solution is to use built in sample functions.
 
