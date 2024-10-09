@@ -44,19 +44,18 @@ Currently still updating as and when I learn more new stuff!
 <div class="column">
 <div class="column-header">Resources</div>
 <ul> 
-<li>List Item 1</li> 
-<li>List Item 2</li> 
-<li>List Item 3</li> 
+<li><a href="./resources/goat_articles">GOAT Articles</a></li> 
+<li><a href="./resources/misc">Miscellaneous</a></li> 
+<li><a href="./resources/free_hq_assets">Free HQ Assets</a></li> 
 </ul> 
 </div> 
 </div>
 
+#### Musings:
 - [[code/why_should_i_learn_coding|Why should I learn how to Code?]]
 
-- [[Solaris|Solaris]]
-
+##### The same stuff but arranged vertically
 ---
-
 ## General Stuff
 
 ### [[Useful Nodes|Useful Nodes⭐]]
