@@ -69,8 +69,9 @@ float f = 24.1
 printf("%.2g%%",f)
 //Output: 24.10%
 ```
-
+ 
 ##### VEX also contains built-in functions for regex string searching and matching!
+
 
 ## Rotating Quaternions
 
@@ -95,6 +96,14 @@ p@orient = qmultiply(p@orient,rot);
 ```
 
 Now if you scrub through all values of `angle`, the orientation will rotate smoothly.
+
+## Getting an Axis from a Quaternion
+
+To get the Y-Axis component from a `orient`:
+
+```c
+vector y-axis = qrotate(p@orient,{0,1,0}) //Vector parameter is the Axis
+```
 
 ## Getting random Vectors
 
