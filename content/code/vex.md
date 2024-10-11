@@ -11,6 +11,7 @@ updated: 2024-02-26T00:14
 ## [VEX Attribute Glossary by John Kunz](https://wiki.johnkunz.com/index.php?title=VEX_Attribute_Glossary#What_is_VEX.3F)
 
 # Strings
+
 ## String Manipulation
 
 String formatting In VEX is derived from C. Where each variable to be passed into the string is formatted based on a specific format in the string.
@@ -54,7 +55,7 @@ Number specifying number of decimal points, meaning `412.1492` has a precision o
 - `%d, %i` Integer in decimal format
 - `%x, %X` Integer in hexadecimal
 - `%o` Integer in octal
-    Use 2 `%`s for a literal `%`
+- Use 2 `%`s for a literal `%`
 
 ##### Example
 
@@ -76,10 +77,14 @@ printf("%.2g%%",f)
 > [!info] VEX also contains built-in functions for regex searching and matching!
 
 <br/><br/>
+
 # Vectors and Quaternions
+
 ## Rotating Quaternions
 
 A common mistake I used to make when trying to rotate quaternions is constructing a matrix and turning the matrix into a quaternion.
+
+![[quaternion_rot_wrong.gif]]
 
 ```c
 //Incorrect
@@ -90,8 +95,11 @@ vector4 rot = quaternion(m);
 p@orient = qmultiply(p@orient,rot);
 ```
 
+
 This appears to work but you will realise that at some points, the orientation will appear to flip. This is because you are still performing the rotation step using the classic Euler rotation.
 The solution is to construct the `rot` quaternion directly as a `vector4`.
+
+![[quaternion_rot_correct.gif]]
 
 ```c
 //Correct Solution
