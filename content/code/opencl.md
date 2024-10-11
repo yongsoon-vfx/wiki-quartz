@@ -71,8 +71,9 @@ float3 x = (float3)(y,y,y);
 
 
 
-### Cellular Noise in OpenCL COPS
+### Worley Noise in OpenCL COPS
 Algorithm converted from OpenGL from [The Book of Shaders: More Noise](https://thebookofshaders.com/12/)
+You can also straight up just use the worley noise from the `mtlx_noise_internal.h` library but this is a good exercise.
 ```c
 #bind layer !&dst
 #bind parm scale float val=10
