@@ -10,6 +10,7 @@ updated: 2024-02-26T00:14
 
 ## [VEX Attribute Glossary by John Kunz](https://wiki.johnkunz.com/index.php?title=VEX_Attribute_Glossary#What_is_VEX.3F)
 
+# Strings
 ## String Manipulation
 
 String formatting In VEX is derived from C. Where each variable to be passed into the string is formatted based on a specific format in the string.
@@ -31,9 +32,11 @@ The general form of the argument is given as `[flags][width][.precision][format]
 
 ##### Possible Flags:
 
+```
 -: Left justify the result
 +: Prefix numbers with + if positive, also strings will be surrounded with quotes
 0: Pad zeros for numeric values
+```
 
 ##### Width:
 
@@ -45,13 +48,13 @@ Number specifying number of decimal points, meaning `412.1492` has a precision o
 
 ##### Formats:
 
-`%g, %p, %c` Integer, float, vector, vector4, matrix3, matrix, string (General)
-`%f, %e, %E` Float, vector, vector4, matrix3, matrix (Floating Point)
-`%s` String
-`%d, %i` Integer in decimal format
-`%x, %X` Integer in hexadecimal
-`%o` Integer in octal
-`%%` Literal percent
+- `%g, %p, %c` Integer, float, vector, vector4, matrix3, matrix, string (General)
+- `%f, %e, %E` Float, vector, vector4, matrix3, matrix (Floating Point)
+- `%s` String
+- `%d, %i` Integer in decimal format
+- `%x, %X` Integer in hexadecimal
+- `%o` Integer in octal
+    Use 2 `%`s for a literal `%`
 
 ##### Example
 
@@ -70,9 +73,43 @@ printf("%.2g%%",f)
 //Output: 24.10%
 ```
 
-##### VEX also contains built-in functions for regex string searching and matching!
+> [!info] VEX also contains built-in functions for regex searching and matching!
 
-## Geting random Vectors
+<br/><br/>
+# Vectors and Quaternions
+## Rotating Quaternions
+
+A common mistake I used to make when trying to rotate quaternions is constructing a matrix and turning the matrix into a quaternion.
+
+```c
+//Incorrect
+matrix m = ident();
+m = rotate(m,chf('angle'),{0,1,0})
+vector4 rot = quaternion(m);
+
+p@orient = qmultiply(p@orient,rot);
+```
+
+This appears to work but you will realise that at some points, the orientation will appear to flip. This is because you are still performing the rotation step using the classic Euler rotation.
+The solution is to construct the `rot` quaternion directly as a `vector4`.
+
+```c
+//Correct Solution
+vector4 rot = quaternion(chf('angle'),{0,1,0})
+p@orient = qmultiply(p@orient,rot);
+```
+
+Now if you scrub through all values of `angle`, the orientation will rotate smoothly.
+
+## Getting an Axis from a Quaternion
+
+To get the Y-Axis component from a `orient`:
+
+```c
+vector y-axis = qrotate(p@orient,{0,1,0}) //Vector parameter is the Axis
+```
+
+## Getting random Vectors
 
 If you are trying to get random vectors in VEX, your first thought might be to use `vector v = rand(@ptnum)` however, this has a tendency towards positive vectors and generally does not give a good result. The solution is to use built in sample functions.
 

@@ -16,8 +16,7 @@ Functions similar to a shrinkwrap modifier in Blender, Pulls all points from a t
 [![](https://i.imgur.com/eGZxlQG.png)](https://i.imgur.com/eGZxlQG.png)
 
 Uses curveu attribute to trim the start and end of a spline, similar to trim paths in After Effects
-
-  
+ 
 
 ## Enumerate SOP
 
@@ -48,3 +47,5 @@ Group by attribute creates groups with the same name as the value of a specified
 **Rivet** is another /obj node which allows you to parent a /obj level to an object within SOP level, it does not inherit orientation by default unless you enable **==_Use Point Vector Attributes for Rivet Frame (using up and N)_==**
 
 ==**Extract Transform**== is a sop level node that takes an /obj level node and outputs a single point containing it’s position, orientation and pivot. Use copy to points to transfer it’s animation onto another geometry.
+
+## [[math_funcs#Principal Component Analysis|Principal Component Analysis]]
