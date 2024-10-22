@@ -1,6 +1,18 @@
-### Pyro is fire. Literally and figuratively.
+# Overview
+Pyro is the built-in Houdini solver for simulating smoke, dust and explosion effects. There are two main modes of the Pyro solver, Dense and Sparse.
+* ## Dense Simulation
+simulates the entire container, useful as the velocity values are maintained even in areas with no visible smoke
+* ## Sparse Simulation
+only simulates the active areas of the container, i.e; areas with smoke. Supposedly faster as it only performs computations on areas of interest. Comes with some limitations and caveats.
+### Notes on Sparse Solving
+- Regions of smoke that are not connected are invisible to each other until they are close enough to merge
+- The container will not keep up with fast moving fluids by default, unless `Expand by Velocity` is enabled
+- This means that by default, simulations with high velocity fields will look very different in Sparse and Dense mode
+- Sparse solving is especially suited for simulations like missile trails, where you would otherwise have to simulate a very large region in Dense mode
 
-WIP Page; here’s some tutorials for you
+
+## tt
+
 
 [Comparison of Shape Settings by Vladimer Castaneto on Youtube](https://www.youtube.com/watch?v=3JrBwycqZks)
 
