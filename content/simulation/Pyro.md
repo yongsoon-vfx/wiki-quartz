@@ -1,5 +1,6 @@
 # Overview
 Pyro is the built-in Houdini solver for simulating smoke, dust and explosion effects. There are two main modes of the Pyro solver, Dense and Sparse.
+
 * ## Dense Simulation
 simulates the entire container, useful as the velocity values are maintained even in areas with no visible smoke
 * ## Sparse Simulation
