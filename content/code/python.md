@@ -43,6 +43,49 @@ for work_item in pdg_node.workItems:
 #  WHICH YOU CAN COOK USING top_node.cookWorkitems() method
 ```
 
+## Sending Geometry across Houdini Processes with SharedMemory
+Passing over geometry from one Houdini to another can be accomplished with file caches, but if you want to achieve a high-speed temporary transfer of geometry, you can push the geometry data as bytes into shared memory (RAM) and pick it up on the other client.
+Python SOP on the server Houdini:
+MAKE SURE MAINTAIN STATE IS TICKED OR THE PYTHON INTEPRETER IS KILLED
+```python
+node = hou.pwd()
+geo = node.geometry()
+
+geo_data = geo.data()
+
+print(len(geo_data))
+from multiprocessing import shared_memory
+
+shm = shared_memory.SharedMemory(create=True,size = len(geo_data))
+
+for i,byte in enumerate(geo_data):
+    shm.buf[i] = byte
+
+#print(geo_data)
+#print("-----------------GAPGAP---------------------")
+#print(shm.buf.tobytes())
+
+print(shm.name)
+```
+
+Python SOP on the client Houdini:
+```python
+node = hou.pwd()
+geo = node.geometry()
+
+mem_name = 'wnsm_301104a4'
+
+from multiprocessing import shared_memory
+eshm = shared_memory.SharedMemory(name=mem_name)
+data = eshm.buf.tobytes().rstrip(b"\x00")
+
+geo.load(data)
+
+```
+
+
+
+
 ## Accessing a USD class with Python
 
 To access a `pxr.Usd.Stage` object and use the USD functions in Houdini, you have to call the `stage()` method on a `hou.LopNode`. 
