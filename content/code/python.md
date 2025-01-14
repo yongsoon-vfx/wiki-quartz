@@ -83,9 +83,86 @@ geo.load(data)
 
 ```
 
+## Opening a socket and sending out data from Houdini\
+On a shelf tool
+```python
+import socket
+import threading
 
 
+def start_server():
+    # Create a socket object
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    host = "127.0.0.1"  # Localhost
+    port = 5000  # Port number
 
+    # Bind the socket to the host and port
+    server_socket.bind((host, port))
+    print(f"Socket server started on {host}:{port}")
+
+    # Start listening for connections
+    server_socket.listen(5)
+    print("Waiting for a connection...")
+
+    while True:
+        # Accept a new connection
+        client_socket, addr = server_socket.accept()
+        print(f"Connection received from {addr}")
+
+        # Receive data from the client
+        data = client_socket.recv(1024).decode("utf-8")
+        print(f"Message received: {data}")
+
+        # Close the connection
+        client_socket.close()
+        break
+
+
+# Start the server in a separate thread to keep Houdini responsive
+server_thread = threading.Thread(target=start_server, daemon=True)
+server_thread.start()
+
+print("Server thread started. Houdini is still responsive.")
+```
+Receiving the data with a Python SOP
+```python
+node = hou.pwd()
+geo = node.geometry()
+import time
+
+print(time.time())
+
+import socket
+
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+host = "127.0.0.1"
+port = 5000
+
+# Connect to the server
+
+client_socket.connect((host, port))
+    
+    # Send a message
+message = "Hello from client!"
+client_socket.send(message.encode("utf-8"))
+    
+    # Close the connection
+client_socket.close()
+# Add code to modify contents of geo.
+# Use drop down menu to select examples.
+```
+## Adding a function into Houdini's Event Loop using Callbacks
+```python
+def LoopingEvent():
+	print("LoopingEvent has executed")
+	pass
+
+hou.ui.addEventLoopCallback(LoopingEvent)
+
+# To stop the eventLoop
+hou.ui.removeEventLoopCallback(LoopingEvent)
+
+```
 ## Accessing a USD class with Python
 
 To access a `pxr.Usd.Stage` object and use the USD functions in Houdini, you have to call the `stage()` method on a `hou.LopNode`. 
