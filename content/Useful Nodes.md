@@ -49,3 +49,6 @@ Group by attribute creates groups with the same name as the value of a specified
 ==**Extract Transform**== is a sop level node that takes an /obj level node and outputs a single point containing it’s position, orientation and pivot. Use copy to points to transfer it’s animation onto another geometry.
 
 ## [[math_funcs#Principal Component Analysis|Principal Component Analysis]]
+
+## Labs UV Transfer
+This node will work better than transferring UVs using the standard Attribute Transfer SOP. The UV seams will be preserved compared to the weird artifacts where the standard attribute transfer tries to interpolate in the seams. The way the node achieves this is by splitting up the points by each UV island and doing the transfer that way.
