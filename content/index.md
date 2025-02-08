@@ -97,3 +97,6 @@ Currently still updating as and when I learn more new stuff!
 ### [[resources/goat_articles|GOAT Articles]]
 
 ### [[resources/free_hq_assets|Free HQ Assets]]
+
+### https://www.sidefx.com/docs/hdk/_h_d_k__s_o_p__h_o_m__c_p_p__v_e_x.html
+
