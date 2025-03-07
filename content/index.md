@@ -47,15 +47,20 @@ Currently still updating as and when I learn more new stuff!
 <li><a href="./resources/goat_articles">GOAT Articles</a></li> 
 <li><a href="./resources/misc">Miscellaneous</a></li> 
 <li><a href="./resources/free_hq_assets">Free HQ Assets</a></li> 
+<li><a href="https://graphicscodex.com/">The Graphics Codex</a></li> 
+<li><a href=https://raytracing.github.io/books/RayTracingInOneWeekend.html>Ray-Tracing in One Weekend</a></li>
 </ul> 
 </div> 
 </div>
 
 #### Musings:
+
 - [[code/why_should_i_learn_coding|Why should I learn how to Code?]]
 
 ##### The same stuff but arranged vertically
+
 ---
+
 ## General Stuff
 
 ### [[Useful Nodes|Useful Nodes⭐]]
@@ -99,4 +104,3 @@ Currently still updating as and when I learn more new stuff!
 ### [[resources/free_hq_assets|Free HQ Assets]]
 
 ### https://www.sidefx.com/docs/hdk/_h_d_k__s_o_p__h_o_m__c_p_p__v_e_x.html
-
