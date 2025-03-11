@@ -160,3 +160,5 @@ For example, 9 choose 2 would result in 36, meaning there are 36 unique pairs of
 Principal component analysis (PCA) is a technique to reduce the dimensionality of data.
 [PCA Shenanigans and How to ML | Jakob Ringler](https://www.youtube.com/watch?v=oDTResIxPeQ)
 
+## Metric Tensors
+[Article by Jake Rice](https://jakerice.design/2023/10/23/MetricTutorial/)
