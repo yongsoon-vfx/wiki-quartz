@@ -146,6 +146,16 @@ quaterniontoeuler(q1); //converts a quaternion to an euler vector
 
 There are a few other functions in vex related to manipulating quaternions that you can refer to [here](https://www.sidefx.com/docs/houdini/vex/functions/quaternion.html). The ones that I’ve listed above are just the most commonly used operations.
 
+## Kinematic Equation
+## $\hat{p}=p+vt+\frac{1}{2}at^{2}\\$
+p-hat = Displaced position  
+p = Initial Position
+v = Velocity 
+t = Time 
+a = Acceleration 
+
+You can use the kinematic equation to fairly accurately interpolate positions of fast moving geometry for accurate sourcing in simulations without using substeps. Another common usage of this equation is for acceleration based motion blur, which resolves curved motion blur better than velocity based motion blur.
+
 # Others
 
 ## Choose Function
