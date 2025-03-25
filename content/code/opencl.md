@@ -5,34 +5,29 @@ tags:
   - code
   - math
 ---
-
 # OpenCL
->OpenCL™ (Open Computing Language) is an open, royalty-free standard for cross-platform, parallel programming of diverse accelerators found in supercomputers, cloud servers, personal computers, mobile devices and embedded platforms. OpenCL greatly improves the speed and responsiveness of a wide spectrum of applications in numerous market categories including professional creative tools, scientific and medical software, vision processing, and neural network training and inferencing.
-\- From the official Khronos Group OpenCL website
 
-## Kernels, Work-Items and Work-Groups
-A **Kernel** is a program that is to be run on every **Work-Item**.
-
-A **Work-Item** is a singular element of what the program is processing. Example for an image-processing algorithm, a single work item would be a single pixel, or in more general terms, a single element in an array. **Work-Items** can be run in parallel on the GPU with thousands of cores which contributes to its speed, but also results in some limitations and important considerations in your code.
-
-A **Work-Group** is a group of set of work-items that can make progress in the presence of barriers. Eg: each work-item uses the same group of memory. This means that a singular **Work-Group** can share locally constructed memory, and that **Work-Groups** cannot synchronize with each other. [Or at least that is how I understand it from this stack-overflow answer.](https://stackoverflow.com/questions/26804153/opencl-work-group-concept) This also means that work-units that share the same global variables, can make a cache in local memory for faster access. For our purposes, Work-Groups will not be relevant.
-
-## OpenCL vs OpenGL
-A program that only acts on a pixels is called a Shader and usually OpenGL is used. OpenCL however is usually used for more general purpose compute and can be used to solved problems that contain large arrays or vectors that can be processed in parallel.
-
-# Houdini
 You can use OpenCL code in Houdini SOPs and COPs. VEX is usually the better choice when you are dealing with geometry and OpenCL is usually more suited for working with volumes.
 
-OpenCL will almost always be **slower** than VEX in doing simple geo-based functions due to the overhead of using the GPU. 
+OpenCL will almost always be **slower** than VEX in doing simple geo-based functions due to the overhead of passing memory to and from the GPU.
 
 >[!warning]
 >OpenCL is also way more prone to crashing due to its nature. It is very easy to write code that will result in an instant crash.
 
-On this page, I will be mainly talking about SideFX's implementation of OpenCL within Houdini, mainly within the new Copernicus context introduced in 20.5. All the code snippets here will only work within Houdini.
+On this page, I will be mainly talking about SideFX's implementation of OpenCL within Houdini, which provides some headers that are automatically included, as well as helpful preprocessor features to make it easier to write.
 
-## OpenCL vs VEX Syntax
+# OpenCL vs VEX 
 
-### Swizzle Vectors
+OpenCL is a lower-level language than VEX and such it will have less functions and primitives types defined. For example, `matrix` primitive types are not defined in standard OpenCL and are instead provided by type-definitions from SideFX to make code easier to write. 
+
+A specific quirk is that a matrix3 `mat3` is actually a 12-element type as there is no native 12-element type.
+
+## Getting Current Element ID
+If running over `First Writeable Attribute` in SOPs
+`int idx = get_global_id(0)`
+`idx` will be equal to the current point number
+## Swizzle Vectors
+
 You can swizzle vectors in both **VEX** and **OpenCL**
 ```c title="OpenCL"
 float3 x = (1.0f,2.0f,3.0f);
@@ -55,8 +50,8 @@ float16 w = a_float16.s0f
 //This last one is relevant because you can go up to a float16
 ```
 
+## Type-Casting
 
-### Type-Casting
 **VEX** Implicit Type-Casting
 ```c
 float y = 10.0;
@@ -68,6 +63,65 @@ vector x = y;
 float y = 10f;
 float3 x = (float3)(y,y,y);
 ```
+
+## Matrices
+
+Matrices are defined row-major meaning given a matrix m = 
+
+$m = \begin{bmatrix}a{1} & a{2} & a{3} \\b{1} & b{2} & b{3} \\c{1} & c{2} & c{3}\end{bmatrix}$
+
+`m[0]` will be equal to `{a1,a2,a3}`
+
+You can use the [functions defined in matrix.h](https://www.sidefx.com/docs/houdini/vex/ocl.html#matrix-functions) to work on matrices.
+
+## Pointers and Arrays
+
+Arrays are defined as pointers to the start of the array (you are writing in C), and you need to do bounds-checking or you might get undefined behavior when you try to access the array out-of-bounds. 
+
+In order to get an array into a function you pass the array pointer into the arguments
+```C
+#bind point &result float
+#bind detail myarray float[]
+
+float myFunction(float *array, int index){
+	return array[index];
+}
+
+@KERNEL
+{
+	float value = myFunction(@myarray,0);
+	@result.set(value);
+}
+```
+Study pointers and C to get a deeper understanding of this.
+
+## WRITEBACK Kernel
+
+Use a writeback kernel in order to write data to prevent race-conditions where a work-item is writing to a attribute that another work-item will be reading
+```c
+@KERNEL
+{
+float result = doSomething();
+@__temp__.set(result);
+}
+
+@WRITEBACK
+{
+@final.set(@__temp__)
+}
+```
+
+## Useful Types that don't exist in VEX
+#### `size_t`
+is an unsigned integer that can store the theoretical maximum size of an integer on any given system
+
+#### `fpreal` and `exint`
+is a float/int type respectively that has variable precisions (16/32/64 bit) that allows code to be written once but work in multiple precisions
+
+#### `int *ptr, float *ptr` and others
+[you will never ask about pointers again after watching this video](https://www.youtube.com/watch?v=2ybLD6_2gKM)
+
+
 
 
 
@@ -129,3 +183,17 @@ You can also straight up just use the worley noise from the `mtlx_noise_internal
 
 For Shader Algorithms:
 [The Book of Shaders](https://thebookofshaders.com/)
+
+
+
+
+
+
+
+### Addendum
+#### Kernels, Work-Items and Work-Groups
+A **Kernel** is a program that is to be run on every **Work-Item**.
+
+A **Work-Item** is a singular element of what the program is processing. Example for an image-processing algorithm, a single work item would be a single pixel, or in more general terms, a single element in an array. **Work-Items** can be run in parallel on the GPU with thousands of cores which contributes to its speed, but also results in some limitations and important considerations in your code.
+
+A **Work-Group** is a group of set of work-items that can make progress in the presence of barriers. Eg: each work-item uses the same group of memory. This means that a singular **Work-Group** can share locally constructed memory, and that **Work-Groups** cannot synchronize with each other. [Or at least that is how I understand it from this stack-overflow answer.](https://stackoverflow.com/questions/26804153/opencl-work-group-concept) This also means that work-units that share the same global variables, can make a cache in local memory for faster access. For our purposes, Work-Groups will not be relevant.
