@@ -12,3 +12,5 @@ exiftool -overwrite_original -PixelUnits=meters -PixelsPerUnitX=ppm -PixelsPerUn
 Where PPM is Pixels Per Meters. You can convert from DPI to PPM by multiplying the DPI number by `39.3701`
 ##### 300 DPI is = floor(300 * 39.3701) = 11811 PPM
 
+## [FFmpeg Explorer](https://ffmpeg.lav.io/)
+Node based tool for viewing and constructing filter stacks for ffmpeg command-line usage.
