@@ -1,5 +1,5 @@
 ---
-title: GOAT Articles
+title: Other Very Useful Resources
 tags:
   - resources
 created: 2024-02-24T22:50
@@ -22,3 +22,5 @@ http://vochsel.com/wiki/
 https://www.tokeru.com/cgwiki/
 
 https://jakerice.design/blog/
+
+https://fxnotes.xyz/

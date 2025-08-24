@@ -44,7 +44,7 @@ Currently still updating as and when I learn more new stuff!
 <div class="column">
 <div class="column-header">Resources</div>
 <ul> 
-<li><a href="./resources/goat_articles">GOAT Articles</a></li> 
+<li><a href="./resources/goat_articles">Other Very Useful Resources</a></li> 
 <li><a href="./resources/misc">Miscellaneous</a></li> 
 <li><a href="./resources/free_hq_assets">Free HQ Assets</a></li> 
 <li><a href="https://graphicscodex.com/">The Graphics Codex</a></li> 
