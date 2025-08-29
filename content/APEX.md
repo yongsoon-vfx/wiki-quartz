@@ -14,3 +14,4 @@ APEX graphs then can be described as being designed for controlling the node net
 
 You can create procedural rigs with very high performance by leveraging these APEX features. Imagine creating a IK rig for a 16 legged creature and the most simplest way to do it in KineFX would require you to setup the transforms logics and transforms one by one with a rig VOP. With APEX, you could create a sub-graph that contains the logic and IK setup with controls for one leg, and then apply it to any number of legs procedurally, and because the functionality of the rig is only executed once, you can achieve a very high performance even with hundreds of legs.
 
+![[apexbase.svg]]
