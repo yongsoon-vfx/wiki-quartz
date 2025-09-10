@@ -52,3 +52,6 @@ Group by attribute creates groups with the same name as the value of a specified
 
 ## Labs UV Transfer
 This node will work better than transferring UVs using the standard Attribute Transfer SOP. The UV seams will be preserved compared to the weird artifacts where the standard attribute transfer tries to interpolate in the seams. The way the node achieves this is by splitting up the points by each UV island and doing the transfer that way.
+
+# Primitive Properties
+You can use this node to reverse the vertex windings and then use the normal sop after to fix inverted normals from models that are imported from other softwares. You can also shift the Vertex index in order to shift the start of the curve.
