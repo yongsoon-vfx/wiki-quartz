@@ -5,6 +5,10 @@ draft: false
 
 These are a list of nodes that I’ve found to be very helpful but are not particularly easy to find.
 
+## PolySplit SOP
+![[polysplit.png]]
+Use PolySplit to draw polygons on a face or also to create edge loops
+
 ## Ray SOP
 
 [![](https://i.imgur.com/JqCGLGN.png)](https://i.imgur.com/JqCGLGN.png)
