@@ -19,8 +19,16 @@ updated: 2024-02-26T00:08
 
 http://vochsel.com/wiki/
 
+invaluable resource for every houdini user
 https://www.tokeru.com/cgwiki/
 
 https://jakerice.design/blog/
 
 https://fxnotes.xyz/
+
+Notes by Hallam Roberts for Houdini's OpenCL
+https://github.com/MysteryPancake/Houdini-OpenCL
+
+Online Book explaining Digital Signal Theory and goes through how to implement Discrete Fourier Transforms and applications. 
+https://brianmcfee.net/dstbook-site/content/intro.html
+Fourier Transforms are used in imaging for image compression and FFTs are especially used for fast convolution of any kind of tensor; useful for image and volume convolution.
