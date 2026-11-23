@@ -186,9 +186,38 @@ For Shader Algorithms:
 
 
 
+## Memory Management
+
+### VRAM
+VRAM is global memory that can be accessed by all work-items, but at a slower speed than constant memory. In order to maximize speed, use memory coalescence.
+```c
+// Read and Write
+__global float data[3] = {1.0,2.0,3.0};
+// Read only
+__global const float data[3] = ...;
+
+// Add restrict in kernel args in order to further optimize cache fetches
+// guarantees no other pointer aliases the memory and might enable
+// SIMD compiler optimizations
+__kernel void doSomething(__global const float* restrict data){
+}
+```
+#### Memory Coalescence
+The GPU executes work-items in lockstep groups of 32 threads on NVIDIA (also called a warp) or 64 threads on AMD (known as a wavefront). When each warp executes a load/store instruction, the memory controller checks to see if all the target memory addresses are adjacent. If it is, the hardware will optimize the memory transactions into one or two large cache-line transactions. If the work-items are trying to access scattered addresses, the hardware has to issue many separate memory transactions, making it much slower.
+
+This also means that you will usually want to use types that can align nicely into multiples of the hardware transaction size, (typically 32,64,128 bytes). This is the reason why float3 (12 bytes) types might actually be slower to access than float4 (16 bytes).
+
+### `__local` memory
+`__local` is a qualifier for memory allocated per work-group to be shared by all work-items within the work-group. It only exists within the lifetime of the work-group. This memory can be use together with barriers/fences to synchronize and do work-group reduction.
 
 
-
+### `__constant` memory
+High speed hardware constant cache for data that will be read by all work-items simultaneously
+```c
+__constant float MY_VAL = 6.76767f;
+```
+>[!information]
+>`__constant` is tiny and strictly limited, often 64KB or less
 
 ### Addendum
 #### Kernels, Work-Items and Work-Groups
