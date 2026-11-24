@@ -23,14 +23,7 @@ Currently still updating as and when I learn more new stuff!
 <li><a href="./Solaris">Solaris</a> </li> 
 <li><a href="./APEX">APEX</a> </li> 
 </ul>
-</div> 
-<div class="container"> 
-<div class="column"> 
-<div class="column-header">Tools</div> 
-<ul> 
-<li><a href="https://github.com/yongsoon-vfx/mixbox-houdini-opencl">MixBox Colour Mixing in Houdini OpenCL</a></li> 
-</ul>
-</div> 
+</div>  
 <div class="column"> 
 <div class="column-header">Languages</div> 
 <ul> 
