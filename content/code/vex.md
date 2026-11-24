@@ -238,7 +238,7 @@ Across Points
 ```c
 int pPoint = 0;
 int ttlPoints = npoints(0);
-int initPoint = chi('First_Prim');
+int initPoint = chi('First_Point');
 for(int i = 0;i< ttlPoints;i++){
     setpointattrib(0,'index',initPoint,i,'set');
     int nb[] = neighbours(0,initPoint);

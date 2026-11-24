@@ -22,10 +22,32 @@ OpenCL is a lower-level language than VEX and such it will have less functions a
 
 A specific quirk is that a matrix3 `mat3` is actually a 12-element type as there is no native 12-element type.
 
-## Getting Current Element ID
+# Glossary
+## Kernel
+A **Kernel** is a program that is to be run on every **Work-Item**. For example in a point wrangle, you are writing a kernel function to run over every point. 
+
+## Work-Item
+A **Work-Item** is a single thread, which may be running over any arbitrary set of data. For example, if you are running over the `P` point attribute on a geometry, then the number of work-items will be equal to the number of points. 
+
+## Work-Group
+A **Work-Group** is a group of work-items that can share local memory. Work-items can share data within a work-group and not outside of it. Work-group sizes are tuned around the hardware warp/wavefront sizes, (32 for NVIDIA, 64 for AMD).
+
+### Global ID vs Local ID
+Global ID is the equivalent of `@ptnum` when running over attributes.
 If running over `First Writeable Attribute` in SOPs
-`int idx = get_global_id(0)`
+```c
+int idx = get_global_id(0)
+```
 `idx` will be equal to the current point number
+
+Local ID is the id of a work-item within a work-group, going from 0 to the work-group size.
+```c
+int lid = get_local_id(0)
+```
+You will use local ids when you want to perform [[opencl#Work-Group Reduction|Work-Group Reduction]].
+
+
+
 ## Swizzle Vectors
 
 You can swizzle vectors in both **VEX** and **OpenCL**
@@ -219,10 +241,6 @@ __constant float MY_VAL = 6.76767f;
 >[!information]
 >`__constant` is tiny and strictly limited, often 64KB or less
 
-### Addendum
-#### Kernels, Work-Items and Work-Groups
-A **Kernel** is a program that is to be run on every **Work-Item**.
+## Work-Group Reduction
+[Optimizing Parallel Reduction in CUDA](https://developer.download.nvidia.com/assets/cuda/files/reduction.pdf) - Guide written by NVIDIA for CUDA but applies to OpenCL and other GPU APIs.
 
-A **Work-Item** is a singular element of what the program is processing. Example for an image-processing algorithm, a single work item would be a single pixel, or in more general terms, a single element in an array. **Work-Items** can be run in parallel on the GPU with thousands of cores which contributes to its speed, but also results in some limitations and important considerations in your code.
-
-A **Work-Group** is a group of set of work-items that can make progress in the presence of barriers. Eg: each work-item uses the same group of memory. This means that a singular **Work-Group** can share locally constructed memory, and that **Work-Groups** cannot synchronize with each other. [Or at least that is how I understand it from this stack-overflow answer.](https://stackoverflow.com/questions/26804153/opencl-work-group-concept) This also means that work-units that share the same global variables, can make a cache in local memory for faster access. For our purposes, Work-Groups will not be relevant.

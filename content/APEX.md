@@ -45,3 +45,5 @@ An APEX Component Script I made that creates a look-at constraint with a constra
 ![[spotlight_component_result.png]]
 
 Because I used a component script, now I can use this setup for any rigs that have the same naming conventions and I can duplicate as many spotlights I want and it will still work.
+
+# Fuse Graphs
