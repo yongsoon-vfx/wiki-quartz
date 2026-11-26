@@ -1,0 +1,20 @@
+{
+	"nodes":[
+		{"id":"187544185116ceb8","type":"group","x":-165,"y":-120,"width":1915,"height":600,"color":"6","label":"Global Work Group"},
+		{"id":"a8f9bad5bf087229","type":"group","x":-145,"y":-50,"width":910,"height":270,"color":"2","label":"Local Work Group 0"},
+		{"id":"897e22b7023db5e7","type":"group","x":820,"y":-50,"width":910,"height":270,"color":"2","label":"Local Work Group 1"},
+		{"id":"3744ed3c93426131","type":"text","text":"__Work Item 0__\nget_global_id(0) = 0\nget_local_id(0) = 0","x":-125,"y":-30,"width":205,"height":110},
+		{"id":"cb1ef9d3b47fab99","type":"text","text":"__Work Item 1__\nget_global_id(0) = 1\nget_local_id(0) = 1","x":100,"y":-30,"width":205,"height":110},
+		{"id":"141714aab109801b","type":"text","text":"__Work Item 2__\nget_global_id(0) = 2\nget_local_id(0) = 2","x":320,"y":-30,"width":205,"height":110},
+		{"id":"49b41de9f9bbc9fd","type":"text","text":"__Work Item 3__\nget_global_id(0) = 3\nget_local_id(0) = 3","x":540,"y":-30,"width":205,"height":110},
+		{"id":"cc1d9b9a379b2592","type":"text","text":"__Local Memory__\nShared between items in the same work group\n``__local data[64];``","x":-125,"y":100,"width":870,"height":100,"color":"4"},
+		{"id":"9c35ed10c2d07f12","type":"text","text":"__ Constant Memory __ - Typically 64KB\nFast and small read-only memory that can be read by all work-items.\n``__constant data[64];``","x":-145,"y":240,"width":1875,"height":100,"color":"1"},
+		{"id":"c20634b5c31a0600","type":"text","text":"__ Global Memory __ - Limited by VRAM\nLarge memory that can be read-write by all work-items\n``__global data[64];``","x":-145,"y":360,"width":1875,"height":100,"color":"#0055ff"},
+		{"id":"b0f42002f8752506","type":"text","text":"__Work Item 4__\nget_global_id(0) = 4\nget_local_id(0) = 0","x":840,"y":-30,"width":205,"height":110},
+		{"id":"d47ade9930d3ea97","type":"text","text":"__Work Item 5__\nget_global_id(0) = 5\nget_local_id(0) = 1","x":1065,"y":-30,"width":205,"height":110},
+		{"id":"02c044dd5b4dd318","type":"text","text":"__Work Item 6__\nget_global_id(0) = 6\nget_local_id(0) = 2","x":1285,"y":-30,"width":205,"height":110},
+		{"id":"4cd10aa8c16122fb","type":"text","text":"__Work Item 7__\nget_global_id(0) = 7\nget_local_id(0) = 3","x":1505,"y":-30,"width":205,"height":110},
+		{"id":"7de96e567dd9c91e","type":"text","text":"__Local Memory __\nShared between items in the same work group\n``__local data[64];``","x":840,"y":100,"width":870,"height":100,"color":"4"}
+	],
+	"edges":[]
+}

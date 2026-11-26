@@ -5,7 +5,7 @@ tags:
   - code
   - math
 ---
-# OpenCL
+# Introduction
 
 You can use OpenCL code in Houdini SOPs and COPs. VEX is usually the better choice when you are dealing with geometry and OpenCL is usually more suited for working with volumes.
 
@@ -23,14 +23,17 @@ OpenCL is a lower-level language than VEX and such it will have less functions a
 A specific quirk is that a matrix3 `mat3` is actually a 12-element type as there is no native 12-element type.
 
 # Glossary
+
+![[GPU Layout Diagram.canvas]]
+
 ## Kernel
 A **Kernel** is a program that is to be run on every **Work-Item**. For example in a point wrangle, you are writing a kernel function to run over every point. 
 
-## Work-Item
+## Work Item
 A **Work-Item** is a single thread, which may be running over any arbitrary set of data. For example, if you are running over the `P` point attribute on a geometry, then the number of work-items will be equal to the number of points. 
 
-## Work-Group
-A **Work-Group** is a group of work-items that can share local memory. Work-items can share data within a work-group and not outside of it. Work-group sizes are tuned around the hardware warp/wavefront sizes, (32 for NVIDIA, 64 for AMD).
+## Work Group
+A **Work Group** is a group of work-items that can share local memory. Work-items can share data within a work-group and not outside of it. Work-group sizes are tuned around the hardware warp/wavefront sizes, (32 for NVIDIA, 64 for AMD).
 
 ### Global ID vs Local ID
 Global ID is the equivalent of `@ptnum` when running over attributes.
@@ -46,8 +49,76 @@ int lid = get_local_id(0)
 ```
 You will use local ids when you want to perform [[opencl#Work-Group Reduction|Work-Group Reduction]].
 
+# Worksets
+Learned part from [Hallam Robert's Houdini OpenCL Docs on GitHub](https://github.com/MysteryPancake/Houdini-OpenCL#worksets)
+Work-Sets are a Houdini specific feature that allows you to run the same kernel multiple times sequentially. 
+
+For example, lets say you want to operate on this array of length 12, and you want to run it first on all elements, then on the second half, then on the last quarter, you would declare the offset and lengths like this:
+```c
+i[]@offsets = {0,6,9};
+i[]@sizes = {12,6,3}
+```
+![[Worksets Diagram.canvas]]
+
+Each kernel invocation will reset `get_global_id(0)` to 0, so you have to add the offset to get the actual id. [Code stolen from here](https://github.com/MysteryPancake/Houdini-OpenCL#plain-opencl-version-9)
+```c
+kernel void kernelName(
+    // Assuming "Use Single Workgroup" is disabled
+    int workset_offset, // Current workset offset, from the "Workset Begin" array
+    int workset_length, // Current workset length, from the "Workset Lengths" array
+    
+    // Dummy binding
+    int P_length,
+    global float* P_array
+)
+{
+    // The global ID still starts at 0, so it's really the local ID of the current workset
+    int local_id = get_global_id(0);
+    if (local_id >= workset_length) return;
+    
+    // Only run on the first workitem in each workset
+    if (local_id != 0) return;
+    
+    // Add the workset offset to get the actual global ID
+    int id = local_id + workset_offset;
+    
+    // Print the local and global ID of the current workset
+    printf("Local ID: %d, Global ID: %d\n", local_id, id);
+}
+```
+
+# Memory Management
+
+### VRAM
+VRAM is global memory that can be accessed by all work-items, but at a slower speed than constant memory. In order to maximize speed, use memory coalescence.
+```c
+// Read and Write
+__global float data[3] = {1.0,2.0,3.0};
+// Read only
+__global const float data[3] = ...;
+
+// Add restrict in kernel args in order to further optimize cache fetches
+// guarantees no other pointer aliases the memory and might enable
+// SIMD compiler optimizations
+__kernel void doSomething(__global const float* restrict data){
+}
+```
 
 
+### `__local` memory
+`__local` is a qualifier for memory allocated per work-group to be shared by all work-items within the work-group. It only exists within the lifetime of the work-group. This memory can be use together with barriers/fences to synchronize and do work-group reduction.
+
+
+### `__constant` memory
+High speed hardware constant cache for data that will be read by all work-items simultaneously
+```c
+__constant float MY_VAL = 6.76767f;
+```
+>[!information]
+>`__constant` is tiny and strictly limited, often 64KB or less
+
+
+# Language Features
 ## Swizzle Vectors
 
 You can swizzle vectors in both **VEX** and **OpenCL**
@@ -101,7 +172,7 @@ You can use the [functions defined in matrix.h](https://www.sidefx.com/docs/houd
 Arrays are defined as pointers to the start of the array (you are writing in C), and you need to do bounds-checking or you might get undefined behavior when you try to access the array out-of-bounds. 
 
 In order to get an array into a function you pass the array pointer into the arguments
-```C
+```c
 #bind point &result float
 #bind detail myarray float[]
 
@@ -198,49 +269,18 @@ You can also straight up just use the worley noise from the `mtlx_noise_internal
 
 ```
 
+# Useful Concepts
 
+## Memory Coalescence
+The GPU executes work-items in lockstep groups of 32 threads on NVIDIA (also called a warp) or 64 threads on AMD (known as a wavefront). When each warp executes a load/store instruction, the memory controller checks to see if all the target memory addresses are adjacent. If it is, the hardware will optimize the memory transactions into one or two large cache-line transactions. If the work-items are trying to access scattered addresses, the hardware has to issue many separate memory transactions, making it much slower.
 
-## More Resources & References
+This also means that you will usually want to use types that can align nicely into multiples of the hardware transaction size, (typically 32,64,128 bytes). This is the reason why float3 (12 bytes) types might actually be slower to access than float4 (16 bytes).
+## Work-Group Reduction
+[Optimizing Parallel Reduction in CUDA](https://developer.download.nvidia.com/assets/cuda/files/reduction.pdf) - Guide written by NVIDIA for CUDA but applies to OpenCL and other GPU APIs.
+
+---
+# More Resources & References
 [Houdini OpenCL Documentation](https://www.sidefx.com/docs/houdini/vex/ocl.html)
 
 For Shader Algorithms:
 [The Book of Shaders](https://thebookofshaders.com/)
-
-
-
-## Memory Management
-
-### VRAM
-VRAM is global memory that can be accessed by all work-items, but at a slower speed than constant memory. In order to maximize speed, use memory coalescence.
-```c
-// Read and Write
-__global float data[3] = {1.0,2.0,3.0};
-// Read only
-__global const float data[3] = ...;
-
-// Add restrict in kernel args in order to further optimize cache fetches
-// guarantees no other pointer aliases the memory and might enable
-// SIMD compiler optimizations
-__kernel void doSomething(__global const float* restrict data){
-}
-```
-#### Memory Coalescence
-The GPU executes work-items in lockstep groups of 32 threads on NVIDIA (also called a warp) or 64 threads on AMD (known as a wavefront). When each warp executes a load/store instruction, the memory controller checks to see if all the target memory addresses are adjacent. If it is, the hardware will optimize the memory transactions into one or two large cache-line transactions. If the work-items are trying to access scattered addresses, the hardware has to issue many separate memory transactions, making it much slower.
-
-This also means that you will usually want to use types that can align nicely into multiples of the hardware transaction size, (typically 32,64,128 bytes). This is the reason why float3 (12 bytes) types might actually be slower to access than float4 (16 bytes).
-
-### `__local` memory
-`__local` is a qualifier for memory allocated per work-group to be shared by all work-items within the work-group. It only exists within the lifetime of the work-group. This memory can be use together with barriers/fences to synchronize and do work-group reduction.
-
-
-### `__constant` memory
-High speed hardware constant cache for data that will be read by all work-items simultaneously
-```c
-__constant float MY_VAL = 6.76767f;
-```
->[!information]
->`__constant` is tiny and strictly limited, often 64KB or less
-
-## Work-Group Reduction
-[Optimizing Parallel Reduction in CUDA](https://developer.download.nvidia.com/assets/cuda/files/reduction.pdf) - Guide written by NVIDIA for CUDA but applies to OpenCL and other GPU APIs.
-

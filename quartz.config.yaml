@@ -271,7 +271,8 @@ layout:
         - reader-mode
       positions:
         right: []
-    canvas: {}
+    canvas:
+
     bases: {}
   sidebars:
     left: scroll
