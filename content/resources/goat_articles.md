@@ -1,5 +1,5 @@
 ---
-title: Other Very Useful Resources
+title: Great Notes by Other People
 tags:
   - resources
 created: 2024-02-24T22:50

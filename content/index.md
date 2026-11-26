@@ -9,4 +9,14 @@ updated: 2024-02-26T00:16
 
 Welcome to my Digital Garden where I put some of my notes on Houdini, Code, 3D Art and other things I may be interested in.
 
-Check out some notes listed on the catalog on the right --->
+Check out some notes listed on the catalog on the right or the links below
+
+---
+## Houdini
+[[APEX]]  [[Solaris]]  [[pdg|PDG]]  [[Useful Nodes]]
+## Solvers
+[[POP]]  [[Pyro]]  [[RBD Bullet]]  [[Vellum]]  [[FLIP]]  [[MPM]]
+## Code
+[[vex|VEX]]  [[python|Python]]  [[opencl|OpenCL]]
+## Resources
+[[free_hq_assets]]  [[misc]]  [[goat_articles|Great Notes by Other People]]  [[Color Management]]
